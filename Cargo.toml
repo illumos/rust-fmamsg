@@ -1,6 +1,9 @@
 [package]
 name = "fmamsg"
+description = "encode and decode illumos Fault Management Architecture (FMA) diagnostic codes"
 version = "0.1.0"
 authors = ["Joshua M. Clulow <josh@sysmgr.org>"]
 edition = "2018"
 license = "Apache-2.0"
+repository = "https://github.com/illumos/rust-fmamsg/"
+keywords = ["fma", "illumos", "solaris", "sun"]
