@@ -35,7 +35,7 @@ fn err<T>(msg: &str) -> Result<T> {
  * conflate with numbers in some fonts; e.g., zero but not "O", 1 but not "I",
  * etc.
  */
-static ALPHABET: &'static [char] = &[
+static ALPHABET: &[char] = &[
     '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'C', 'D', 'E', 'F',
     'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W',
     'X', 'Y',
@@ -56,7 +56,7 @@ struct CodeForm {
  * There are four diagnostic code forms.  The shortest form that will fit the
  * entry number is always chosen.
  */
-static FORMS: &'static [CodeForm] = &[
+static FORMS: &[CodeForm] = &[
     CodeForm {
         /*
          * DICT-XXXX-XX
