@@ -1,7 +1,7 @@
 [package]
 name = "fmamsg"
 description = "encode and decode illumos Fault Management Architecture (FMA) diagnostic codes"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Joshua M. Clulow <josh@sysmgr.org>"]
 edition = "2018"
 license = "Apache-2.0"

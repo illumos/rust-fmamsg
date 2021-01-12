@@ -142,6 +142,14 @@ fn checksum(dict: &str, mut bits: Bits, nsumbits: usize) -> u128 {
     csum & bits::mask(nsumbits)
 }
 
+/*
+ * Dictionary names must be composed of uppercase ASCII letters and ASCII
+ * numbers.
+ */
+fn dict_char(c: char) -> bool {
+    c.is_ascii_uppercase() || c.is_ascii_digit()
+}
+
 #[derive(PartialEq)]
 enum State {
     Dict,
@@ -165,8 +173,8 @@ impl DiagCode {
     pub fn new(dictionary: &str, entry: u128) -> Result<DiagCode> {
         if dictionary.is_empty() {
             err("dictionary name must not be empty")
-        } else if !dictionary.chars().all(|c| c.is_ascii_uppercase()) {
-            err("dictionary name must be entirely uppercase ASCII letters")
+        } else if !dictionary.chars().all(dict_char) {
+            err("dictionary name must be entirely ASCII letters and numbers")
         } else if !CodeForm::entry_valid(entry) {
             err("entry value is too large to be encoded")
         } else {
@@ -195,7 +203,7 @@ impl DiagCode {
         for c in code.chars() {
             match s {
                 State::Dict => {
-                    if c.is_ascii_uppercase() {
+                    if dict_char(c) {
                         dict.push(c);
                     } else if c == '-' && !dict.is_empty() {
                         s = State::Group;
@@ -376,6 +384,7 @@ mod tests {
             TestCase::new("SENSOR-8000-5V", "SENSOR", 5),
             TestCase::new("SENSOR-8000-6G", "SENSOR", 6),
             TestCase::new("SENSOR-8000-7L", "SENSOR", 7),
+            TestCase::new("SCA1000-8000-10", "SCA1000", 1),
         ]
     }
 
